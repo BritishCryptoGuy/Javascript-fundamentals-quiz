@@ -40,10 +40,10 @@ button:hover {
   display: block;
 }
 
-.fail {
+/* .fail {
   display: flex;
   justify-content: center;
-}
+} */
 
 input[type="text"] {
   font-size: 100%;

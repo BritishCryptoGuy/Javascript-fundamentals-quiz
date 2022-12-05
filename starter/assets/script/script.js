@@ -16,14 +16,30 @@ const submitBtn = document.querySelector("#submit");
 const feedback = document.querySelector("#feedback");
 const highscoresOL = document.querySelector("#highscores");
 const clearBtn = document.querySelector("#clear");
-const incorrectMsg = document.querySelector(".fail");
+// const incorrectMsg = document.querySelector(".fail");
+const endScreen = document.querySelector("#end-screen");
+const finalScoreText = document.querySelector("#final-score");
+const initialsText = document.querySelector("#initials");
+const initialsBtn = document.querySelector("#submit");
+const userScores = "userScores";
+const highScoresOL = document.querySelector("#highscores");
 let currentQuestion; //current question object in quiz
 let questionsCopy; //spliced questions
 let questionNum = 0;
 let multiplierPoint = false;
 let multiplierPointScore = 0;
+let feedbackTimer = null;
+let gameFin = false;
 
-function reset() {}
+function reset() {
+  questionNum = 0;
+  multiplierPoint = false;
+  multiplierPointScore = 0;
+  time.textContent = 50;
+  gameFin = true;
+  multiDiv.classList.add("hide");
+  timerDiv.classList.add("hide");
+}
 
 function loss() {
   //You lost, please try again
@@ -31,6 +47,12 @@ function loss() {
   // console.log("loser");
 }
 
+function scoreCalc() {
+  let num = parseInt(time.textContent);
+  let total = num * multiplierPointScore;
+  console.log(total);
+  return total;
+}
 function loadQuiz() {
   console.log(questionsCopy.length);
   let index = Math.floor(Math.random() * questionsCopy.length - 1);
@@ -53,6 +75,21 @@ function parseTimer(num) {
   console.log(time.textContent);
   return time.textContent;
 }
+function feedbackDisplay(e) {
+  if (feedbackTimer) {
+    clearInterval(feedbackTimer);
+  }
+  let fTime = 30;
+  feedback.textContent = e === 0 ? "Incorrect Answer" : "Correct!";
+  feedbackTimer = setInterval(function () {
+    feedback.classList.remove("hide");
+    fTime--;
+    if (fTime === 0 || gameFin === true) {
+      clearInterval(feedbackTimer);
+      feedback.classList.add("hide");
+    }
+  }, 100);
+}
 
 //Check answer function. If correct returns loadQuiz
 function checkAnswer(e) {
@@ -61,17 +98,16 @@ function checkAnswer(e) {
   }
   let answer = e.target.innerHTML;
   if (answer !== currentQuestion[0].correctAnswer) {
-    console.log("FAIL");
+    feedbackDisplay(0);
+    // feedback.classList.remove("hide");
+    // feedback.textContent = "Incorrect Answer";
     parseTimer(-5);
-    incorrectMsg.classList.remove("hide");
     multiplierPoint = false;
   } else {
-    incorrectMsg.classList.add("hide");
+    feedbackDisplay(1);
+    // feedback.classList.remove("hide");
+    // feedback.textContent = "Correct!";
     parseTimer(5);
-    // let choiceChild = choicesDiv.lastElementChild;
-    // console.log(choiceChild);
-    // choiceChild.remove(); Hallelujah
-    // choicesDiv.remove.lastElementChild;
     for (let i = 0; i <= 3; i++) {
       let choiceChild = choicesDiv.lastElementChild;
       choiceChild.remove();
@@ -83,7 +119,9 @@ function checkAnswer(e) {
     multiplierPoint = true;
     console.log(multiplierPointScore);
     questionNum++;
-    if ((questionNum = 10)) {
+    if (questionNum === 2) {
+      console.log("winner");
+      return gameComplete();
       //Winner
     }
     console.log(questionNum);
@@ -107,18 +145,77 @@ function timerFunction() {
       clearInterval(countdown);
       loss();
     }
+    if (gameFin) {
+      clearInterval(countdown);
+    }
   }, 1000);
 }
-
+function gameComplete() {
+  questionsBox.classList.add("hide");
+  feedback.classList.add("hide");
+  endScreen.classList.remove("hide");
+  let finalScore = scoreCalc();
+  finalScoreText.textContent = finalScore;
+  reset();
+  //reset
+}
 let startGame = function () {
   startScreen.classList.add("hide");
+  gameFin = false;
   timerFunction();
 };
+
+function addInitals(initials) {
+  let newScore = finalScoreText.textContent;
+  let userObject = {
+    initials: initials,
+    score: newScore,
+  };
+  // let combined;
+  // if (localStorage.getItem(userScores) !== null) {
+  //   let previousData = JSON.parse(localStorage.getItem(userScores));
+  //   console.log(previousData);
+  //   combined = { userObject, ...previousData };
+  //   console.log(combined);
+  // }
+  localStorage.setItem(userScores, JSON.stringify(userObject));
+  console.log(JSON.parse(localStorage.getItem(userScores)));
+  console.log(location);
+  location.href = "highScores.html";
+  fillScoreboard();
+}
+function fillScoreboard() {
+  let score = JSON.parse(localStorage.getItem(userScores));
+  console.log(score);
+  console.log(highScoresOL);
+  highscoresOL.insertAdjacentHTML(
+    "beforeend",
+    `<li class="score">${score}</li>`
+  );
+}
+
+function initialBtnFun() {
+  let initials = initialsText.value;
+  initialsText.value = "";
+  if (initials.length > 3) {
+    alert("Please choose initials no longer than 3 characters");
+    return;
+  } else {
+    addInitals(initials);
+  }
+}
 
 //start button event Listener
 startBtn.addEventListener("click", startGame);
 choicesDiv.addEventListener("click", checkAnswer);
-
+initialsBtn.addEventListener("click", initialBtnFun);
+initialsText.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    return initialBtnFun();
+  } else {
+    return;
+  }
+});
 //if timer is active then questions start
 //maybe try give an extra bonus point if previous click was correct
 //repeat untill either timer has finished or all answers have been answered correctly

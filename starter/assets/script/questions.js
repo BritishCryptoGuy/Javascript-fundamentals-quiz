@@ -3,10 +3,10 @@ let questions = [
   {
     question: "What is a JavaScript function?",
     choices: [
-      "A block of code that performs a specific task",
       "A sequence of characters representing a value",
       "A way to store multiple values in a single variable",
       "A mechanism for executing code in a specific order",
+      "A block of code that performs a specific task",
     ],
     correctAnswer: "A block of code that performs a specific task",
   },
@@ -21,14 +21,9 @@ let questions = [
     correctAnswer: "var myVariable = 5;",
   },
   {
-    question: "How do you create a loop in JavaScript?",
-    choices: [
-      "for (i = 0; i < 10; i++)",
-      "forIf (i < 10)",
-      "repeat (i < 10)",
-      "loop (i < 10)",
-    ],
-    correctAnswer: "for (i = 0; i < 10; i++)",
+    question: "What is the result of the expression 'undefined == null?'",
+    choices: ["true", "false", "undefined", "null"],
+    correctAnswer: "true",
   },
   {
     question: "What is an object in JavaScript?",
@@ -36,7 +31,7 @@ let questions = [
       "A collection of related data",
       "A piece of code that performs a specific task",
       "A sequence of characters representing a value",
-      "A way to store multiple values in a single variable",
+      "A type of function",
     ],
     correctAnswer: "A collection of related data",
   },
@@ -64,23 +59,19 @@ let questions = [
   {
     question: "What is a conditional statement in JavaScript?",
     choices: [
-      "A block of code that is executed if a specified condition is true",
       "A sequence of characters representing a value",
       "A way to store multiple values in a single variable",
+      "A block of code that is executed if a specified condition is true",
       "A statement that is only executed after an Event Listener",
     ],
     correctAnswer:
       "A block of code that is executed if a specified condition is true",
   },
   {
-    question: "What is the correct syntax for a for loop in JavaScript?",
-    choices: [
-      "for (var i = 0; i < 10; i++) { code to be executed }",
-      "for i = 0 to 10 { code to be executed }",
-      "for (i++; i < 10; i = 0) { code to be executed }",
-      "for i = 0 to 10: { code to be executed }",
-    ],
-    correctAnswer: "for (var i = 0; i < 10; i++) { code to be executed }",
+    question:
+      "Which of the following is not a primitive data type in JavaScript?",
+    choices: ["string", "number", "object", "boolean"],
+    correctAnswer: "object",
   },
   {
     question: "What is the correct syntax for a while loop in JavaScript?",
@@ -95,9 +86,9 @@ let questions = [
   {
     question: "What is the correct way to write a comment in JavaScript?",
     choices: [
-      "// This is a comment",
       "# This is a comment",
       "/ This is a comment /",
+      "// This is a comment",
       "-- This is a comment",
     ],
     correctAnswer: "// This is a comment",
