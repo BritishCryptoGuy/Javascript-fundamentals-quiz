@@ -11,8 +11,10 @@
 
   <body>
     <div class="scores"><a href="highscores.html">View Highscores</a></div>
-
-    <div class="timer">Time: <span id="time">0</span></div>
+    <div class="multiPoints hide">
+      Multiplier: <span id="multiScore">0</span>
+    </div>
+    <div class="timer hide">Time: <span id="time">0</span></div>
 
     <div class="wrapper">
       <div id="start-screen" class="start">
@@ -27,7 +29,8 @@
 
       <div id="questions" class="hide">
         <h2 id="question-title"></h2>
-        <div id="choices" class="choices"></div>
+        <div id="choicesDiv"></div>
+        <div class="fail hide">Incorrect Answer</div>
       </div>
 
       <div id="end-screen" class="hide">
@@ -42,7 +45,7 @@
       <div id="feedback" class="feedback hide"></div>
     </div>
 
-    <script src="./assets/js/questions.js"></script>
-    <script src="./assets/js/logic.js"></script>
+    <script src="assets/script/questions.js"></script>
+    <script src="assets/script/script.js"></script>
   </body>
 </html>
