@@ -40,7 +40,7 @@ My website must load and function as intended. The ways in which the quiz/websit
 
 The following image shows the web application's appearance
 
-![The screenshot displays the website which has a question and choices on display. Also in the image the timer and multiplier can be seen.](images/Portfolio-page.png)
+![The screenshot displays the website which has a question and choices on display. Also in the image the timer and multiplier can be seen.](assets/images/quizWebsite.png)
 
 ### License
 
