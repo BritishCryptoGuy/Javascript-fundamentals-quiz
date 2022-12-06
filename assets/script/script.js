@@ -167,7 +167,7 @@ function updateLocalStorage(initials) {
     let userArray = [userObject];
     localStorage.setItem("userScores", JSON.stringify(userArray));
   }
-  location.href = "highscores.html";
+  location.href = "././highscores.html";
 }
 
 //initialsBtnFun. Checks for valid initials, calls addInitials function if valid
