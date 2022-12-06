@@ -1,12 +1,16 @@
+//Query Selected variables
 const highScoresOL = document.querySelector("#highscores");
 const clear = document.querySelector("#clear");
-console.log(localStorage);
+
+//orderScores function. Takes in scores and orders correctly
 function orderScores(scores) {
   scores.sort((b, a) => {
     return a.score < b.score ? -1 : a.score > b.score ? 1 : 0;
   });
   console.log(scores);
 }
+
+//fillScoreboard function. Fills in scoreboard with local storage data
 function fillScoreboard() {
   if (localStorage.length === 0) {
     return;
@@ -22,12 +26,11 @@ function fillScoreboard() {
     );
   }
 }
+
 fillScoreboard();
+
+//Event Listener
 clear.addEventListener("click", function () {
   localStorage.clear();
   highScoresOL.innerHTML = "";
-  // for (let i = 0; i <= ; i++) {
-  //   let choiceChild = choicesDiv.lastElementChild;
-  //   choiceChild.remove();
-  // }
 });

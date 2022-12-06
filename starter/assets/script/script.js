@@ -194,6 +194,7 @@ function addInitals(initials) {
   location.href = "highScores.html";
 }
 
+//
 function initialBtnFun() {
   let initials = initialsText.value;
   initialsText.value = "";
@@ -205,7 +206,7 @@ function initialBtnFun() {
   }
 }
 
-//start button event Listener
+//Event Listeners
 startBtn.addEventListener("click", startGame);
 restartBtn.addEventListener("click", startGame);
 choicesDiv.addEventListener("click", checkAnswer);
@@ -217,10 +218,3 @@ initialsText.addEventListener("keydown", function (e) {
     return;
   }
 });
-//if timer is active then questions start
-//maybe try give an extra bonus point if previous click was correct
-//repeat untill either timer has finished or all answers have been answered correctly
-//if timer runs out then display Game over message and suggest to try again
-//else if all answers have been answered show score (amount of time left on timer)
-//then request them to put in initials and log score to localstorage and update highscores html
-//else if timer has hit 0 questions go away and score is popped up
