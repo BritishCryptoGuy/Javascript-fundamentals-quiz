@@ -30,20 +30,9 @@ button:hover {
   background-color: #8570a5;
 }
 
-/* #choices {
-  border: 3px solid violet;
-  border-radius: 3%;
-  back 
- }  */
-
 .choices button {
   display: block;
 }
-
-/* .fail {
-  display: flex;
-  justify-content: center;
-} */
 
 input[type="text"] {
   font-size: 100%;
@@ -102,4 +91,9 @@ li:nth-child(odd) {
   position: absolute;
   top: 10px;
   right: 10px;
+}
+
+.initial-span {
+  padding-left: 20px;
+  font-weight: bold;
 }

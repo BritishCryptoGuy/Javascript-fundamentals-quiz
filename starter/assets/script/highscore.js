@@ -23,11 +23,12 @@ function fillScoreboard() {
   for (let score of scores) {
     highScoresOL.insertAdjacentHTML(
       "beforeend",
-      `<li class="score"> ${score.score}       ${score.initials}  </li>`
+      `<li class="score"> ${score.score} <span class="initial-span">"${score.initials}"</span>  </li>`
     );
   }
 }
 
+//init scoreboard
 fillScoreboard();
 
 //Event Listener

@@ -1,88 +1,51 @@
-# Module 6 Challenge Web APIs: Code Quiz
+# Javascript fundamentals quiz
 
-## Your Task
+## Short description on the quiz/project
 
-As you proceed in your journey to becoming a front-end web developer, it’s likely that you’ll be asked to complete a coding assessment, perhaps as part of an interview process. A typical coding assessment is a combination of multiple-choice questions and interactive coding challenges. 
+The objective of this project is to create a quiz on JavaScript fundamentals. The quiz itself will be multiple choice and can be used as fun little exercise for those learning to code that want to test their knowledge. Number of questions included at present is limited but could be expanded upon in future.
 
-To help you become familiar with these tests and give you a chance to apply the skills from this module, this week’s challenge invites you to build a timed coding quiz with multiple-choice questions. This app will run in the browser, and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean, polished, and responsive user interface. This week’s coursework has taught you all the skills you need to succeed in this challenge.
+The quiz itself will be timed and work on a point base system. Overall score will be determined by (time left x multiplier score(increases from successive correct answers)). The scores will then be saved into local storage and presented in a leaderboard.
 
-
-## User Story
+### User Story
 
 ```
-AS A coding boot camp student
-I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
-SO THAT I can gauge my progress compared to my peers
+AS a JavaScript student
+I WANT to take a timed quiz on JavaScript fundamentals that stores high scores to local storage
+SO THAT I can test my knowledge with a fun quiz
 ```
 
-## Acceptance Criteria
+### Acceptance Criteria
 
-Create a code quiz that contains the following requirements:
+My website must load and function as intended. The ways in which the quiz/website should work are:
 
-* A start button that when clicked a timer starts and the first question appears.
- 
-  * Questions contain buttons for each answer.
-  * 
-  * When answer is clicked, the next question appears
-  * 
-  * If the answer clicked was incorrect then subtract time from the clock
+- It should begin with a start button that when clicked a timer starts and the first question appears.
 
-* The quiz should end when all questions are answered or the timer reaches 0.
+  - Questions contain buttons for each answer.
 
-  * When the game ends, it should display their score and give the user the ability to save their initials and their score
-  
-## Mock-Up
+  - When an answer is clicked, the next question appears
 
-The following animation demonstrates the application functionality:
+  - A feedback prompt should display upon each answered question
 
-![Animation of code quiz. Presses button to start quiz. Clicks the button for the answer to each question, displays if answer was correct or incorrect. Quiz finishes and displays high scores. User adds their intials, then clears their intials and starts over.](./assets/08-web-apis-challenge-demo.gif)
+  - Depending on a correct/incorrect answer time will either be added/subtracted from the timer
 
-## Grading Requirements
+- The quiz should end when 10 questions are answered correctly or the timer reaches 0
 
-This challenge is graded based on the following criteria: 
+  - If the timer reaches 0 the user will be given the option to restart quiz
 
-### Technical Acceptance Criteria: 40%
+  - When the game ends, it should display their total score and give the user the ability to save their initials and their score
 
-* Satisfies all of the above acceptance criteria.
+  - They will then be taken to the Highscores and their data will be displayed in the leaderboard (data from local storage)
 
-### Deployment: 32%
+  ### Screenshot of completed site
 
-* Application deployed at live URL.
+The following image shows the web application's appearance
 
-* Application loads with no errors.
+![The screenshot displays the website which has a question and choices on display. Also in the image the timer and multiplier can be seen.](images/Portfolio-page.png)
 
-* Application GitHub URL submitted.
+### License
 
-* GitHub repository that contains application code.
+Please refer to license in the Repo
 
-### Application Quality: 15%
+### Website Link
 
-* Application user experience is intuitive and easy to navigate.
-
-* Application user interface style is clean and polished.
-
-* Application resembles the mock-up functionality provided in the challenge instructions.
-
-### Repository Quality: 13%
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains quality README file with description, screenshot, and link to deployed application.
-
-
-## Review
-
-You are required to submit BOTH of the following for review:
-
-* The URL of the functional, deployed application.
-
-* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
-
----
-© 2022 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+https://britishcryptoguy.github.io/Bootcamp-Challenge-2-Portfolio/
