@@ -28,9 +28,9 @@ let questions = [
   {
     question: "What is an object in JavaScript?",
     choices: [
-      "A collection of related data",
       "A piece of code that performs a specific task",
       "A sequence of characters representing a value",
+      "A collection of related data",
       "A type of function",
     ],
     correctAnswer: "A collection of related data",
@@ -97,9 +97,9 @@ let questions = [
     question:
       "What is the correct way to concatenate two strings in JavaScript?",
     choices: [
-      '"Hello" + "world"',
       '"Hello" & "world"',
       '"Hello" && "world"',
+      '"Hello" + "world"',
       '"Hello" & "world"',
     ],
     correctAnswer: '"Hello" + "world"',
@@ -107,10 +107,10 @@ let questions = [
   {
     question: "What is the correct way to create an array in JavaScript?",
     choices: [
-      "var myArray = [1, 2, 3, 4, 5];",
       "var myArray = (1, 2, 3, 4, 5);",
       "var myArray = '1, 2, 3, 4, 5';",
       "create Array(1, 2, 3, 4, 5);",
+      "var myArray = [1, 2, 3, 4, 5];",
     ],
     correctAnswer: "var myArray = [1, 2, 3, 4, 5];",
   },

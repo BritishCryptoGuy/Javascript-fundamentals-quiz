@@ -4,22 +4,23 @@ const clear = document.querySelector("#clear");
 
 //orderScores function. Takes in scores and orders correctly
 function orderScores(scores) {
-  scores.sort((b, a) => {
-    return a.score < b.score ? -1 : a.score > b.score ? 1 : 0;
+  scores.forEach((score) => {
+    score.score = Number(score.score);
   });
-  console.log(scores);
+  scores.sort((a, b) => {
+    return a.score > b.score ? -1 : a.score < b.score ? 1 : 0;
+  });
 }
 
 //fillScoreboard function. Fills in scoreboard with local storage data
 function fillScoreboard() {
+  highScoresOL.innerHTML = "";
   if (localStorage.length === 0) {
     return;
   }
   let scores = JSON.parse(localStorage.getItem("userScores"));
-  console.log(scores[0]);
   orderScores(scores);
   for (let score of scores) {
-    console.log(score);
     highScoresOL.insertAdjacentHTML(
       "beforeend",
       `<li class="score"> ${score.score}       ${score.initials}  </li>`
