@@ -48,4 +48,4 @@ Please refer to license in the Repo
 
 ### Website Link
 
-https://britishcryptoguy.github.io/Bootcamp-Challenge-2-Portfolio/
+https://britishcryptoguy.github.io/Javascript-fundamentals-quiz/
