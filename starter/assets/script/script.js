@@ -21,27 +21,32 @@ const endScreen = document.querySelector("#end-screen");
 const finalScoreText = document.querySelector("#final-score");
 const initialsText = document.querySelector("#initials");
 const initialsBtn = document.querySelector("#submit");
-const userScores = "userScores";
-const highScoresOL = document.querySelector("#highscores");
+const lossSlide = document.querySelector("#lossSlide");
+const restartBtn = document.querySelector("#restart");
 let currentQuestion; //current question object in quiz
 let questionsCopy; //spliced questions
 let questionNum = 0;
 let multiplierPoint = false;
-let multiplierPointScore = 0;
+let multiplierPointScore = 1;
 let feedbackTimer = null;
 let gameFin = false;
 
 function reset() {
   questionNum = 0;
   multiplierPoint = false;
-  multiplierPointScore = 0;
-  time.textContent = 50;
+  multiplierPointScore = 1;
+  time.textContent = 60;
   gameFin = true;
   multiDiv.classList.add("hide");
   timerDiv.classList.add("hide");
 }
 
 function loss() {
+  reset();
+  removeChoices();
+  questionsTitle.textContent = "";
+  lossSlide.classList.remove("hide");
+  // questionsTitle
   //You lost, please try again
   //restart button()
   // console.log("loser");
@@ -57,7 +62,7 @@ function loadQuiz() {
   console.log(questionsCopy.length);
   let index = Math.floor(Math.random() * questionsCopy.length - 1);
   currentQuestion = questionsCopy.splice(index, 1);
-  questionsTitle.innerHTML = currentQuestion[0].question;
+  questionsTitle.textContent = currentQuestion[0].question;
   for (let choice of currentQuestion[0].choices) {
     choicesDiv.insertAdjacentHTML(
       "beforeend",
@@ -75,6 +80,7 @@ function parseTimer(num) {
   console.log(time.textContent);
   return time.textContent;
 }
+
 function feedbackDisplay(e) {
   if (feedbackTimer) {
     clearInterval(feedbackTimer);
@@ -90,6 +96,12 @@ function feedbackDisplay(e) {
     }
   }, 100);
 }
+function removeChoices() {
+  for (let i = 0; i <= 3; i++) {
+    let choiceChild = choicesDiv.lastElementChild;
+    choiceChild.remove();
+  }
+}
 
 //Check answer function. If correct returns loadQuiz
 function checkAnswer(e) {
@@ -101,6 +113,7 @@ function checkAnswer(e) {
     feedbackDisplay(0);
     // feedback.classList.remove("hide");
     // feedback.textContent = "Incorrect Answer";
+
     parseTimer(-5);
     multiplierPoint = false;
   } else {
@@ -108,10 +121,7 @@ function checkAnswer(e) {
     // feedback.classList.remove("hide");
     // feedback.textContent = "Correct!";
     parseTimer(5);
-    for (let i = 0; i <= 3; i++) {
-      let choiceChild = choicesDiv.lastElementChild;
-      choiceChild.remove();
-    }
+    removeChoices();
     if (multiplierPoint === true) {
       multiplierPointScore += 0.5;
       multi.textContent = multiplierPointScore;
@@ -130,9 +140,9 @@ function checkAnswer(e) {
 }
 
 function timerFunction() {
-  time.textContent = 50;
-  multi.textContent = 0;
-  multiplierPointScore = 0;
+  time.textContent = 60;
+  multi.textContent = 1;
+  multiplierPointScore = 1;
   multiDiv.classList.remove("hide");
   timerDiv.classList.remove("hide");
   questionsBox.classList.remove("hide");
@@ -160,38 +170,28 @@ function gameComplete() {
   //reset
 }
 let startGame = function () {
-  startScreen.classList.add("hide");
+  if (lossSlide.classList.contains("hide")) {
+    startScreen.classList.add("hide");
+  } else {
+    lossSlide.classList.add("hide");
+  }
   gameFin = false;
   timerFunction();
 };
 
 function addInitals(initials) {
   let newScore = finalScoreText.textContent;
-  let userObject = {
-    initials: initials,
-    score: newScore,
-  };
-  // let combined;
-  // if (localStorage.getItem(userScores) !== null) {
-  //   let previousData = JSON.parse(localStorage.getItem(userScores));
-  //   console.log(previousData);
-  //   combined = { userObject, ...previousData };
-  //   console.log(combined);
-  // }
-  localStorage.setItem(userScores, JSON.stringify(userObject));
-  console.log(JSON.parse(localStorage.getItem(userScores)));
-  console.log(location);
+  let userObject = { initials: initials, score: newScore };
+  if (localStorage.getItem("userScores") !== null) {
+    let allScores = JSON.parse(localStorage.getItem("userScores"));
+    allScores.push(userObject);
+    console.log(allScores);
+    localStorage.setItem("userScores", JSON.stringify(allScores));
+  } else {
+    let userArray = [userObject];
+    localStorage.setItem("userScores", JSON.stringify(userArray));
+  }
   location.href = "highScores.html";
-  fillScoreboard();
-}
-function fillScoreboard() {
-  let score = JSON.parse(localStorage.getItem(userScores));
-  console.log(score);
-  console.log(highScoresOL);
-  highscoresOL.insertAdjacentHTML(
-    "beforeend",
-    `<li class="score">${score}</li>`
-  );
 }
 
 function initialBtnFun() {
@@ -207,6 +207,7 @@ function initialBtnFun() {
 
 //start button event Listener
 startBtn.addEventListener("click", startGame);
+restartBtn.addEventListener("click", startGame);
 choicesDiv.addEventListener("click", checkAnswer);
 initialsBtn.addEventListener("click", initialBtnFun);
 initialsText.addEventListener("keydown", function (e) {
