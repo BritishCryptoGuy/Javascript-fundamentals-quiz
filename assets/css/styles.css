@@ -68,8 +68,20 @@ li:nth-child(odd) {
 
 .scores {
   position: absolute;
+  background-color: #563d7c;
   top: 10px;
   left: 10px;
+  color: white !important;
+  border-radius: 5px;
+  padding: 10px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+.scores:hover {
+  background-color: #8570a5;
+}
+.scores a {
+  color: white;
 }
 
 .feedback {
